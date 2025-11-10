@@ -7,6 +7,15 @@
 #include<climits>
 using namespace std;
 
+
+// 1. Brute force approach (TC : O(N*N)    SC : O(1))
+
+// for each element , count freq by scanning the array
+// Outer loop -> Pick element
+// Inner loop -> Count occurences 
+// If count > n/3 and element NOT IN RESULT, add to answer
+
+
 // vector<int> majority_element(vector<int> &arr){
 //     int n = arr.size();
 
@@ -34,6 +43,12 @@ using namespace std;
 
 
 
+
+// 2. Better approach (Hash map) (TC : O(N)    SC : O(N))
+
+// store all elments and their freq in map
+// collect elements with freq > n/3
+
 // vector<int> majority_element(vector<int> &arr){
 //     int n = arr.size();
 
@@ -55,6 +70,16 @@ using namespace std;
 // }
 
 
+
+
+// 3. Optmial approach (Boyer–Moore Majority Vote Extension)
+
+// LOGIC : At most 2 majority element -> track 2 candidates + count
+// ALGORITHM : 
+// First pass -> cancels out count, maintain 2 candidates
+// Second pass -> verify actual freq (as there can be 0,1, and 2 majority elements)
+
+// TC : O(2*N)    SC : O(1)
 
 vector<int> majority_element(vector<int> &arr){
     int n = arr.size();
@@ -82,6 +107,8 @@ vector<int> majority_element(vector<int> &arr){
             count1--, count2--;
         }
     }
+
+    // Manual checking whether ele1 and ele2 are majority element
 
     count1 = 0 , count2 = 0;
     for(int i=0; i<n; i++){
