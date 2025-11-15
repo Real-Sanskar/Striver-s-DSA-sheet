@@ -8,6 +8,16 @@
 #include<algorithm>
 using namespace std;
 
+
+
+// 1. Brute force approach (TC : O(N*N*N*N)    SC : O(1))
+
+// LOGIC : check all possible quardaplets, store unique ones in set
+// ALGORITHM :
+// use 4 nested loops
+// if sum == target , store the target
+// convert set to vector
+
 // vector<vector<int>> four_sum(vector<int> &arr, int target){
 //     int n = arr.size();
 
@@ -35,6 +45,15 @@ using namespace std;
 
 
 
+
+// 2. Better approach (TC : O(N*N*N)    SC : O(2*M) + O(N))
+
+// LOGIC : fix 3 numbers, check if 4th exits in hash Set
+// ALGORITHM : 
+//      -> fix 3 numbers i,j,k using 3 loops
+//      -> find (target - arr[i] - arr[j] - arr[k]) in hash set
+//      -> use set to avoid duplicates
+
 // vector<vector<int>> four_sum(vector<int> &arr, int target){
 //     int n = arr.size();
 
@@ -60,6 +79,16 @@ using namespace std;
 // }
 
 
+
+
+// 3. Optimal approach : 2 pointer
+
+// LOGIC : sort, fix 2 elements, use 2 pointer for remaining 2
+// ALGORITHM : 
+//      -> sort the array
+//      -> fix i and j 
+//      -> reduce to 2-sum problem with 2 pointers (left,right)
+//      -> skip duplicates at all levels (i,j, left, right)
 
 vector<vector<int>> four_sum(vector<int> &arr, int target){
     int n = arr.size();
