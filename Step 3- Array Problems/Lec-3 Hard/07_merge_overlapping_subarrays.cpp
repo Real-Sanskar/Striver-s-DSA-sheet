@@ -1,7 +1,21 @@
+// given an array of intervals, where interval[i] = [starti, endi]
+// merge all overlapping intervals and return result in sorted order
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;
+
+
+
+// 1. Brute force approach (TC : O(N*N + N*logN)      SC : O(N))
+
+// LOGIC : compare every intervals with every other, merge if overlapping
+// ALGORITHM :
+// sort intervals
+// for each intervals, checkkfor all others
+// if 2 overlap (end1 >= start2) merge into : {min(start1,start2), max(end1,end2)}
+// mark merged intervals 
 
 // vector<vector<int>> merge_subarray(vector<vector<int>> &arr){
 //     int n = arr.size();
@@ -27,6 +41,20 @@ using namespace std;
 //     return ans;
 // }
 
+
+
+
+// 2. Optmial approach 
+
+// LOGIC :  sort intervals, merge while traversing linearly
+// ALGORITHM : 
+// sort the array
+// traverse the array
+// case 1: if no overlap : 
+//          if(ans.empty() || arr[i][0] > ans.back()[1])
+//              ans.push_back(arr[i]);
+//          else 
+//              ans.back()[1] = max(ans.back()[1],arr[i][1])
 
 vector<vector<int>> merge_subarray(vector<vector<int>> &arr){
     int n = arr.size();
